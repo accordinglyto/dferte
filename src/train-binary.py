@@ -23,19 +23,19 @@ if argc > 1 and (argvs[1] == "--development" or argvs[1] == "-d"):
 if DEV:
   epochs = 10
 else:
-  epochs = 1000
+  epochs = 10
 
 # BEFORE STARTING TRAINING YOU NEED TO MANUALLY TAKE 20 PERCENENT OF THE TRAINING DATA AND PUT IT INTO VALIDATION FOLDER
 # I was too lazy to do it in the code.
 
-train_data_dir = './data/train/'
-validation_data_dir = './data/validation/'
+train_data_dir = '../data/train/'
+validation_data_dir = '../data/validation/'
 
 # Input the size of your sample images
 img_width, img_height = 150, 150
 # Enter the number of samples, training + validation
-nb_train_samples = 13204
-nb_validation_samples = 1412
+nb_train_samples = 160
+nb_validation_samples = 40
 nb_filters1 = 32
 nb_filters2 = 32
 nb_filters3 = 64
@@ -45,7 +45,7 @@ conv3_size = 5
 pool_size = 2
 # We have 2 classes, buy and sell
 classes_num = 2
-batch_size = 128
+batch_size = 32
 lr = 0.001
 chanDim =3
 
@@ -99,13 +99,13 @@ validation_generator = test_datagen.flow_from_directory(
 """
 Tensorboard log
 """
-target_dir = "./models/weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
+target_dir = "../models/weights-improvement-{epoch:02d}-{val_accuracy:.2f}.hdf5"
 if not os.path.exists(target_dir):
   os.mkdir(target_dir)
-model.save('./src/models/model.h5')
-model.save_weights('./src/models/weights.h5')
+model.save('models/model.h5')
+model.save_weights('models/weights.h5')
 
-checkpoint = ModelCheckpoint(target_dir, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+checkpoint = ModelCheckpoint(target_dir, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
 callbacks_list = [checkpoint]
 
 model.fit_generator(

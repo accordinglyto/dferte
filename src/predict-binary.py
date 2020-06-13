@@ -47,7 +47,7 @@ fb = 0
 fs = 0
 na = 0
 
-for i, ret in enumerate(os.walk(data_path + '/test/buy')):
+for i, ret in enumerate(os.walk(test_path + '/test/buy')):
   for i, filename in enumerate(ret[2]):
     if filename.startswith("."):
       continue
@@ -61,7 +61,7 @@ for i, ret in enumerate(os.walk(data_path + '/test/buy')):
     else:
       fb += 1
 
-for i, ret in enumerate(os.walk(data_path + '/test/sell')):
+for i, ret in enumerate(os.walk(test_path + '/test/sell')):
   for i, filename in enumerate(ret[2]):
     if filename.startswith("."):
       continue
