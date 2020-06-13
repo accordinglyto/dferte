@@ -12,8 +12,8 @@ import os
 buy_dir = '../data/train/buy/'
 sell_dir = '../data/train/sell/'
 
-val_num = 20
-train_num = 80
+val_num = 175
+train_num = 715
 
 for i in range(0,val_num):
  files = os.listdir("../data/train/sell")
