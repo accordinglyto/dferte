@@ -23,7 +23,7 @@ if argc > 1 and (argvs[1] == "--development" or argvs[1] == "-d"):
 if DEV:
   epochs = 10
 else:
-  epochs = 10
+  epochs = 1000
 
 # BEFORE STARTING TRAINING YOU NEED TO MANUALLY TAKE 20 PERCENENT OF THE TRAINING DATA AND PUT IT INTO VALIDATION FOLDER
 # I was too lazy to do it in the code.
@@ -32,7 +32,7 @@ train_data_dir = '../data/train/'
 validation_data_dir = '../data/validation/'
 
 # Input the size of your sample images
-img_width, img_height = 150, 150
+img_width, img_height = 165, 165
 # Enter the number of samples, training + validation
 nb_train_samples = 160
 nb_validation_samples = 40
