@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import mpl_finance
 import numpy as np
 import uuid
+import matplotlib
 
 # Input your csv file here with historical data
 
@@ -44,10 +45,26 @@ def graphwerk(start, finish):
     for x in range(len(close)-len(smb)):
         smb.append(smb[-1]+diff)
 
-    fig = plt.figure(num=1, figsize=(3, 3), dpi=50, facecolor='w', edgecolor='k')
-    dx = fig.add_subplot(111)
-    #mpl_finance.volume_overlay(ax, open, close, volume, width=0.4, colorup='b', colordown='b', alpha=1)
+    fig = plt.figure(num=1, figsize=(4, 4), dpi=50, facecolor='w', edgecolor='k')
+    #fig2 = plt.figure(num=1, figsize=(1, 1), dpi=50, facecolor='w', edgecolor='k')
+
+    dx = fig.add_subplot(4,1,(1,3))
+    dx.axis("off")
+
+    dx2 = fig.add_subplot(414)
+    dx2.axis("off")
+    
+
     mpl_finance.candlestick2_ochl(dx,open, close, high, low, width=1.5, colorup='g', colordown='r', alpha=0.5)
+
+    #pad = 0.60
+    #yl = dx.get_ylim()
+    #print(yl)
+    #dx.set_ylim(yl[0]-(yl[1]-yl[0])*pad,yl[1])
+    #print(dx.get_ylim())
+
+
+    mpl_finance.volume_overlay(dx2, open, close, volume, width=0.4, alpha=1)
 
     plt.autoscale()
     plt.plot(smb, color="blue", linewidth=10, alpha=0.5)
