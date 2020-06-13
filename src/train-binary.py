@@ -105,7 +105,7 @@ if not os.path.exists(target_dir):
 model.save('models/model.h5')
 model.save_weights('models/weights.h5')
 
-checkpoint = ModelCheckpoint(target_dir, monitor='val_accuracy', verbose=1,  mode='max', save_freq='epoch',period=10)
+checkpoint = ModelCheckpoint(target_dir, monitor='val_accuracy', verbose=1,  mode='max', save_best_only=True)
 callbacks_list = [checkpoint]
 
 model.fit_generator(
