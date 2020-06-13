@@ -8,7 +8,7 @@ import matplotlib
 # Input your csv file here with historical data
 
 ad = genfromtxt('../financial_data/BDO.csv', delimiter=',' ,dtype=str)
-pd = np.flipud(ad)
+pd = ad
 
 buy_dir = '../data/train/buy/'
 sell_dir = '../data/train/sell/'
@@ -34,9 +34,12 @@ def graphwerk(start, finish):
         close.append(float(pd[start][4]))
         volume.append(float(pd[start][5]))
         date.append(pd[start][0])
-        start = start + 1
+        print(f"Day 1 stock price: {float(pd[start][4])}")
 
+        start = start + 1
     close_next = float(pd[finish][4])
+    print(f"Day 2 stock price: {float(pd[start][4])}")
+
 
     #sma = convolve_sma(close, 5)
     #smb = list(sma)
@@ -71,22 +74,22 @@ def graphwerk(start, finish):
     plt.axis('off')
     comp_ratio = close_next / close[-1]
     print(comp_ratio)
-
-    if close[-1] > close_next:
-            print('close value is bigger')
+    print(f"{close[-1]} => {close_next}")
+    if close[-1] >= close_next:
+            print('previous value is bigger')
             print('last value: ' + str(close[-1]))
             print('next value: ' + str(close_next))
             print('sell')
             plt.savefig(sell_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
     else:
-            print('close value is smaller')
+            print('previous value is smaller')
             print('last value: '+ str(close[-1]))
             print('next value: ' + str(close_next))
             print('buy')
             plt.savefig(buy_dir + str(uuid.uuid4())+'.jpg', bbox_inches='tight')
 
 
-    #plt.show()
+    # plt.show()
     open.clear()
     close.clear()
     volume.clear()
@@ -102,6 +105,6 @@ print(iter_count)
 iter = 0
 
 
-for x in range(len(pd)-4):
+for x in range(len(pd)): #(len(pd)-4):
    graphwerk(iter, iter+1)
    iter = iter + 1
