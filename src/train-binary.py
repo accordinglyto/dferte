@@ -34,8 +34,8 @@ validation_data_dir = '../data/validation/'
 # Input the size of your sample images
 img_width, img_height = 165, 165
 # Enter the number of samples, training + validation
-nb_train_samples = 160
-nb_validation_samples = 40
+nb_train_samples = 1430
+nb_validation_samples = 350
 nb_filters1 = 32
 nb_filters2 = 32
 nb_filters3 = 64
@@ -45,7 +45,7 @@ conv3_size = 5
 pool_size = 2
 # We have 2 classes, buy and sell
 classes_num = 2
-batch_size = 32
+batch_size = 128
 lr = 0.001
 chanDim =3
 
@@ -105,7 +105,7 @@ if not os.path.exists(target_dir):
 model.save('models/model.h5')
 model.save_weights('models/weights.h5')
 
-checkpoint = ModelCheckpoint(target_dir, monitor='val_accuracy', verbose=1,  mode='max')
+checkpoint = ModelCheckpoint(target_dir, monitor='val_accuracy', verbose=1,  mode='max', save_freq=10)
 callbacks_list = [checkpoint]
 
 model.fit_generator(
