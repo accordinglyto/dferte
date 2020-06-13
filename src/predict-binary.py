@@ -6,7 +6,7 @@ from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 from keras.models import Sequential, load_model
 
 
-img_width, img_height = 165, 165
+img_width, img_height = 48, 48
 model_path = '../src/models/model.h5'
 weights_path = '../src/models/weights'
 model = load_model(model_path)
