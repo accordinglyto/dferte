@@ -32,10 +32,10 @@ train_data_dir = '../data/train/'
 validation_data_dir = '../data/validation/'
 
 # Input the size of your sample images
-img_width, img_height = 165, 165
+img_width, img_height = 48, 48
 # Enter the number of samples, training + validation
-nb_train_samples = 1310
-nb_validation_samples = 350
+nb_train_samples = 2590
+nb_validation_samples = 740
 nb_filters1 = 32
 nb_filters2 = 32
 nb_filters3 = 64

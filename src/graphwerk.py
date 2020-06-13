@@ -38,21 +38,21 @@ def graphwerk(start, finish):
 
     close_next = float(pd[finish][4])
 
-    sma = convolve_sma(close, 5)
-    smb = list(sma)
-    diff = sma[-1] - sma[-2]
+    #sma = convolve_sma(close, 5)
+    #smb = list(sma)
+    #diff = sma[-1] - sma[-2]
 
-    for x in range(len(close)-len(smb)):
-        smb.append(smb[-1]+diff)
+    #for x in range(len(close)-len(smb)):
+        #smb.append(smb[-1]+diff)
 
-    fig = plt.figure(num=1, figsize=(4, 4), dpi=50, facecolor='w', edgecolor='k')
+    fig = plt.figure(num=1, figsize=(1, 1), dpi=50, facecolor='w', edgecolor='k')
     #fig2 = plt.figure(num=1, figsize=(1, 1), dpi=50, facecolor='w', edgecolor='k')
 
-    dx = fig.add_subplot(4,1,(1,3))
-    dx.axis("off")
+    dx = fig.add_subplot(111)
+    #dx.axis("off")
 
-    dx2 = fig.add_subplot(414)
-    dx2.axis("off")
+    #dx2 = fig.add_subplot(414)
+    #dx2.axis("off")
     
 
     mpl_finance.candlestick2_ochl(dx,open, close, high, low, width=1.5, colorup='g', colordown='r', alpha=0.5)
@@ -64,10 +64,10 @@ def graphwerk(start, finish):
     #print(dx.get_ylim())
 
 
-    mpl_finance.volume_overlay(dx2, open, close, volume, width=0.4, alpha=1)
+    #mpl_finance.volume_overlay(dx2, open, close, volume, width=0.4, alpha=1)
 
     plt.autoscale()
-    plt.plot(smb, color="blue", linewidth=10, alpha=0.5)
+    #plt.plot(smb, color="blue", linewidth=10, alpha=0.5)
     plt.axis('off')
     comp_ratio = close_next / close[-1]
     print(comp_ratio)
@@ -97,11 +97,11 @@ def graphwerk(start, finish):
 
 
 
-iter_count = int(len(pd)/4)
+iter_count = int(len(pd))
 print(iter_count)
 iter = 0
 
 
 for x in range(len(pd)-4):
-   graphwerk(iter, iter+12)
-   iter = iter + 2
+   graphwerk(iter, iter+1)
+   iter = iter + 1
