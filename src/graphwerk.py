@@ -12,7 +12,6 @@ pd = ad[:-1]
 
 buy_dir = '../data/train/buy/'
 sell_dir = '../data/train/sell/'
-strictbuy_dir = '../data/train/strictbuy/'
 
 def convolve_sma(array, period):
     return np.convolve(array, np.ones((period,))/period, mode='valid')
@@ -73,24 +72,30 @@ def graphwerk(start, finish):
 
     comp_ratio = close_next / close[-1]
     print(comp_ratio)
-    if (close_next/close[-1] > 1.015):
-            print('previous value is 1.15x smaller')
-            print('last value: ' + str(close[-1]))
-            print('next value: ' + str(close_next))
-            print('sell')
-            plt.savefig(strictbuy_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
-    elif close[-1] >= close_next:
-            print('previous value is bigger')
+    if (close_next/close[-1] < 1.015):
+            print('previous value is bigger or less than 1.15x change')
             print('last value: ' + str(close[-1]))
             print('next value: ' + str(close_next))
             print('sell')
             plt.savefig(sell_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
     else:
-            print('previous value is smaller')
-            print('last value: '+ str(close[-1]))
+            print('previous value is 1.15x smaller')
+            print('last value: ' + str(close[-1]))
             print('next value: ' + str(close_next))
-            print('buy')
-            plt.savefig(buy_dir + str(uuid.uuid4())+'.jpg', bbox_inches='tight')
+            print('sell')
+            plt.savefig(buy_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
+    # if close[-1] >= close_next:
+    #         print('previous value is bigger')
+    #         print('last value: ' + str(close[-1]))
+    #         print('next value: ' + str(close_next))
+    #         print('sell')
+    #         plt.savefig(sell_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
+    # else:
+    #         print('previous value is smaller')
+    #         print('last value: '+ str(close[-1]))
+    #         print('next value: ' + str(close_next))
+    #         print('buy')
+    #         plt.savefig(buy_dir + str(uuid.uuid4())+'.jpg', bbox_inches='tight')
 
 
     # plt.show()
