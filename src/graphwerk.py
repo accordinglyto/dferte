@@ -8,10 +8,11 @@ import matplotlib
 # Input your csv file here with historical data
 
 ad = genfromtxt('../financial_data/BDO.csv', delimiter=',' ,dtype=str)
-pd = ad
+pd = ad[:-1]
 
 buy_dir = '../data/train/buy/'
 sell_dir = '../data/train/sell/'
+strictbuy_dir = '../data/train/strictbuy/'
 
 def convolve_sma(array, period):
     return np.convolve(array, np.ones((period,))/period, mode='valid')
@@ -27,18 +28,15 @@ def graphwerk(start, finish):
 
 # Below filtering is valid for eurusd.csv file. Other financial data files have different orders so you need to find out
 # what means open, high and close in their respective order.
-
         open.append(float(pd[start][1]))
         high.append(float(pd[start][2]))
         low.append(float(pd[start][3]))
         close.append(float(pd[start][4]))
         volume.append(float(pd[start][5]))
         date.append(pd[start][0])
-        print(f"Day 1 stock price: {float(pd[start][4])}")
 
         start = start + 1
     close_next = float(pd[finish][4])
-    print(f"Day 2 stock price: {float(pd[start][4])}")
 
 
     #sma = convolve_sma(close, 5)
@@ -72,10 +70,16 @@ def graphwerk(start, finish):
     plt.autoscale()
     #plt.plot(smb, color="blue", linewidth=10, alpha=0.5)
     plt.axis('off')
+
     comp_ratio = close_next / close[-1]
     print(comp_ratio)
-    print(f"{close[-1]} => {close_next}")
-    if close[-1] >= close_next:
+    if (close_next/close[-1] > 1.015):
+            print('previous value is 1.15x smaller')
+            print('last value: ' + str(close[-1]))
+            print('next value: ' + str(close_next))
+            print('sell')
+            plt.savefig(strictbuy_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
+    elif close[-1] >= close_next:
             print('previous value is bigger')
             print('last value: ' + str(close[-1]))
             print('next value: ' + str(close_next))
