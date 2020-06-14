@@ -7,8 +7,8 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt('../financial_data/BDO.csv', delimiter=',' ,dtype=str)
-pd = ad[:-1]
+ad = genfromtxt('../financial_data/BDO-strictbuy.csv', delimiter=',' ,dtype=str)
+pd = ad
 
 buy_dir = '../data/train/buy/'
 sell_dir = '../data/train/sell/'
@@ -22,6 +22,7 @@ def graphwerk(start, finish):
     low = []
     close = []
     volume = []
+    decision = []
     date = []
     for x in range(finish-start):
 
@@ -32,6 +33,7 @@ def graphwerk(start, finish):
         low.append(float(pd[start][3]))
         close.append(float(pd[start][4]))
         volume.append(float(pd[start][5]))
+        decision.append(str(pd[start][6]))
         date.append(pd[start][0])
 
         start = start + 1
@@ -72,17 +74,17 @@ def graphwerk(start, finish):
 
     comp_ratio = close_next / close[-1]
     print(comp_ratio)
-    if (close_next/close[-1] < 1.015):
-            print('previous value is bigger or less than 1.15x change')
+    if (decision[-1] == "sell"):
+            print('previous value is bigger')
             print('last value: ' + str(close[-1]))
             print('next value: ' + str(close_next))
             print('sell')
             plt.savefig(sell_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
     else:
-            print('previous value is 1.15x smaller')
+            print('previous value is smaller')
             print('last value: ' + str(close[-1]))
             print('next value: ' + str(close_next))
-            print('sell')
+            print('buy')
             plt.savefig(buy_dir + str(uuid.uuid4()) +'.jpg', bbox_inches='tight')
     # if close[-1] >= close_next:
     #         print('previous value is bigger')
