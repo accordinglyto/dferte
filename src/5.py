@@ -7,7 +7,7 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt("../financial_data/BDO-2008.csv", delimiter=",", dtype=str)
+ad = genfromtxt("../financial_data/AP.csv", delimiter=",", dtype=str)
 pd = ad
 
 buy_dir = "../data/train/buy/"
