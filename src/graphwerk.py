@@ -7,7 +7,7 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt("../financial_data/UBP-2008.csv", delimiter=",", dtype=str)
+ad = genfromtxt("../financial_data/PNB-2008.csv", delimiter=",", dtype=str)
 pd = ad
 
 buy_dir = "../data/train/buy/"
@@ -67,7 +67,7 @@ def graphwerk(start, finish):
     max_forecast = max(all_prices)
 
     for z in all_prices:
-        if close[-1] * 1.018 < z:
+        if close[-1] * 1.03 < z:
             decision = "buy"
 
     sma = convolve_sma(close, 5)
@@ -87,8 +87,6 @@ def graphwerk(start, finish):
     # plt.plot(smb, color="blue", linewidth=10, alpha=0.5)
     plt.axis("off")
 
-    comp_ratio = close_next / close[-1]
-    print(comp_ratio)
     if decision == "sell":
         print("previous value is bigger")
         print("last value: " + str(close[-1]))
