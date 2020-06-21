@@ -7,12 +7,6 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt("../financial_data/BDO-2008.csv", delimiter=",", dtype=str)
-pd = ad
-
-buy_dir = "../data/train/buy/"
-sell_dir = "../data/train/sell/"
-
 
 def convolve_sma(array, period):
     return np.convolve(array, np.ones((period,)) / period, mode="valid")
@@ -34,7 +28,6 @@ def graphwerk(start, finish):
     c_volume = []
     c_date = []
     c_start = start + 12
-    c_finish = finish + 12
 
     for x in range(finish - start):
         c_open.append(float(pd[c_start][1]))
@@ -43,7 +36,6 @@ def graphwerk(start, finish):
         c_close.append(float(pd[c_start][4]))
         c_volume.append(float(pd[c_start][5]))
         c_date.append(pd[c_start][0])
-
         c_start = c_start + 1
 
     for x in range(finish - start):
@@ -59,16 +51,16 @@ def graphwerk(start, finish):
         date.append(pd[start][0])
 
         start = start + 1
-    close_next = float(pd[finish][4])
 
     decision = "sell"
-    all_prices = c_open + c_high + c_low + c_close
-    min_forecast = min(all_prices)
-    max_forecast = max(all_prices)
+    min_forecast = min(c_low)
+    max_forecast = max(c_high)
 
-    for z in all_prices:
-        if close[-1] * 1.03 < z:
-            decision = "buy"
+    if close[-1] * 1.025 < max_forecast:
+        decision = "buy"
+    # for z in all_prices:
+    # if close[-1] * 1.03 < z:
+    #     decision = "buy"
 
     sma = convolve_sma(close, 5)
     smb = list(sma)
@@ -132,12 +124,20 @@ def graphwerk(start, finish):
     plt.clf()
 
 
-iter_count = int(len(pd) / 4)
-print(iter_count)
-iter = 0
+output = []
+with open("STOCKbluechip.csv") as f:
+    output = [str(s) for line in f.readlines() for s in line[:-1].split(",")]
 
+for stock in output:
 
-for x in range(len(pd) - 4):
-    graphwerk(iter, iter + 12)
-    iter = iter + 2
+    ad = genfromtxt(f"../financial_data/{stock}.csv", delimiter=",", dtype=str)
+    pd = ad
 
+    buy_dir = "../data/train/buy/"
+    sell_dir = "../data/train/sell/"
+
+    iter = 0
+
+    for x in range(len(pd) - 28):
+        graphwerk(iter, iter + 12)
+        iter = iter + 2
