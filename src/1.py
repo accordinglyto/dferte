@@ -128,7 +128,7 @@ def graphwerk(start, finish):
 
 # for stock in output:
 
-ad = genfromtxt(f"../financial_data/AEV.csv", delimiter=",", dtype=str)
+ad = genfromtxt(f"../financial_data/AC.csv", delimiter=",", dtype=str)
 pd = ad
 
 buy_dir = "../data/train/buy/"
