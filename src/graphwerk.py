@@ -80,7 +80,6 @@ def graphwerk(start, finish):
     plt.axis("off")
 
     if decision == "sell":
-        print("previous value is bigger")
         print("last value: " + str(close[-1]))
         print(
             "range of values in next 13 bars: "
@@ -91,7 +90,6 @@ def graphwerk(start, finish):
         print("sell")
         plt.savefig(sell_dir + str(uuid.uuid4()) + ".jpg", bbox_inches="tight")
     else:
-        print("previous value is smaller")
         print("last value: " + str(close[-1]))
         print(
             "range of values in next 13 bars: "
@@ -124,20 +122,20 @@ def graphwerk(start, finish):
     plt.clf()
 
 
-output = []
-with open("STOCKbluechip.csv") as f:
-    output = [str(s) for line in f.readlines() for s in line[:-1].split(",")]
+# output = []
+# with open("STOCKbluechip.csv") as f:
+#     output = [str(s) for line in f.readlines() for s in line[:-1].split(",")]
 
-for stock in output:
+# for stock in output:
 
-    ad = genfromtxt(f"../financial_data/{stock}.csv", delimiter=",", dtype=str)
-    pd = ad
+ad = genfromtxt(f"../financial_data/AC.csv", delimiter=",", dtype=str)
+pd = ad
 
-    buy_dir = "../data/train/buy/"
-    sell_dir = "../data/train/sell/"
+buy_dir = "../data/train/buy/"
+sell_dir = "../data/train/sell/"
 
-    iter = 0
+iter = 0
 
-    for x in range(len(pd) - 28):
-        graphwerk(iter, iter + 12)
-        iter = iter + 2
+for x in range(len(pd)):
+    graphwerk(iter, iter + 12)
+    iter = iter + 2

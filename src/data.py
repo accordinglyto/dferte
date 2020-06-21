@@ -1,6 +1,6 @@
 from psequant import get_pse_data
 
-df = get_pse_data("GTCAP", "2020-06-3", "2020-06-19")
+df = get_pse_data("GTCAP", "2020-01-3", "2020-06-19")
 df.to_csv("file_name.csv")
 
 
