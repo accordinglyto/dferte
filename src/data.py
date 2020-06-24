@@ -1,7 +1,7 @@
 from psequant import get_pse_data
 
-stock = "BDO"
-df = get_pse_data(stock, "2020-06-19", "2020-06-23")
+stock = "URC"
+df = get_pse_data(stock, "2020-06-05", "2020-06-24")
 print(df)
 
 

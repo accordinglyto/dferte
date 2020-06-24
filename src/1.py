@@ -69,7 +69,7 @@ def graphwerk(start, finish):
     for x in range(len(close) - len(smb)):
         smb.append(smb[-1] + diff)
 
-    fig = plt.figure(num=1, figsize=(3, 3), dpi=50, facecolor="w", edgecolor="k")
+    fig = plt.figure(num=1, figsize=(3, 3), dpi=150, facecolor="w", edgecolor="k")
     dx = fig.add_subplot(111)
     # mpl_finance.volume_overlay(ax, open, close, volume, width=0.4, colorup='b', colordown='b', alpha=1)
     mpl_finance.candlestick2_ochl(
