@@ -7,6 +7,8 @@ import matplotlib
 
 # Input your csv file here with historical data
 
+ad = genfromtxt(f"../financial_data/AC.csv", delimiter=",", dtype=str)
+
 
 def convolve_sma(array, period):
     return np.convolve(array, np.ones((period,)) / period, mode="valid")
@@ -27,9 +29,9 @@ def graphwerk(start, finish):
     c_close = []
     c_volume = []
     c_date = []
-    c_start = start + 12
+    c_start = start + 18
 
-    for x in range(finish - start):
+    for x in range(finish - start - 6):
         c_open.append(float(pd[c_start][1]))
         c_high.append(float(pd[c_start][2]))
         c_low.append(float(pd[c_start][3]))
@@ -69,7 +71,7 @@ def graphwerk(start, finish):
     for x in range(len(close) - len(smb)):
         smb.append(smb[-1] + diff)
 
-    fig = plt.figure(num=1, figsize=(3, 3), dpi=150, facecolor="w", edgecolor="k")
+    fig = plt.figure(num=1, figsize=(3, 3), dpi=50, facecolor="w", edgecolor="k")
     dx = fig.add_subplot(111)
     # mpl_finance.volume_overlay(ax, open, close, volume, width=0.4, colorup='b', colordown='b', alpha=1)
     mpl_finance.candlestick2_ochl(
@@ -128,7 +130,6 @@ def graphwerk(start, finish):
 
 # for stock in output:
 
-ad = genfromtxt(f"../financial_data/AC.csv", delimiter=",", dtype=str)
 pd = ad
 
 buy_dir = "../data/train/buy/"
@@ -137,5 +138,5 @@ sell_dir = "../data/train/sell/"
 iter = 0
 
 for x in range(len(pd)):
-    graphwerk(iter, iter + 12)
+    graphwerk(iter, iter + 18)
     iter = iter + 2
