@@ -8,6 +8,7 @@ import matplotlib
 # Input your csv file here with historical data
 
 ad = genfromtxt(f"../financial_data/LTG.csv", delimiter=",", dtype=str)
+ad = ad[1500:]
 
 
 def convolve_sma(array, period):
