@@ -1,24 +1,24 @@
 from psequant import get_pse_data
 
 stock = "URC"
-df = get_pse_data(stock, "2020-06-05", "2020-06-24")
+df = get_pse_data(stock, "2020-05-28", "2020-06-23")
 print(df)
 
 
-# df.to_csv("file_name.csv")
+df.to_csv("file_name.csv")
 
 
-# # read the data file in as a list
-# fin = open("file_name.csv", "r")
-# data_list = fin.readlines()
-# fin.close()
-# # test it ...
+# read the data file in as a list
+fin = open("file_name.csv", "r")
+data_list = fin.readlines()
+fin.close()
+# test it ...
 
-# # remove list items from index 3 to 5 (inclusive)
-# del data_list[0]
-# # test it ...
+# remove list items from index 3 to 5 (inclusive)
+del data_list[0]
+# test it ...
 
-# # write the changed data (list) to a file
-# fout = open("file_name.csv", "w")
-# fout.writelines(data_list)
-# fout.close()
+# write the changed data (list) to a file
+fout = open("file_name.csv", "w")
+fout.writelines(data_list)
+fout.close()

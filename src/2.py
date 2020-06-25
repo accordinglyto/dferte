@@ -58,10 +58,9 @@ def graphwerk(start, finish):
     min_forecast = min(c_low)
     max_forecast = max(c_high)
 
-    if close[-1] * 1.03 < max_forecast:
+    if close[-1] * 1.04 < max_forecast:
         decision = "buy"
     # for z in all_prices:
-    # if close[-1] * 1.03 < z:
     #     decision = "buy"
 
     sma = convolve_sma(close, 5)
