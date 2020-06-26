@@ -7,7 +7,7 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt(f"../financial_data/AC.csv", delimiter=",", dtype=str)
+ad = genfromtxt(f"../financial_data/AEV.csv", delimiter=",", dtype=str)
 ad = ad[1500:]
 
 
@@ -59,7 +59,7 @@ def graphwerk(start, finish):
     min_forecast = min(c_low)
     max_forecast = max(c_high)
 
-    if close[-1] * 1.05 < max_forecast:
+    if close[-1] * 1.06 < max_forecast:
         decision = "buy"
     # for z in all_prices:
     # if close[-1] * 1.03 < z:
@@ -140,4 +140,4 @@ iter = 0
 
 for x in range(len(pd)):
     graphwerk(iter, iter + 18)
-    iter = iter + 4
+    iter = iter + 2
