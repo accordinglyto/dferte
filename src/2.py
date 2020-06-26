@@ -7,7 +7,7 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt(f"../financial_data/AEV.csv", delimiter=",", dtype=str)
+ad = genfromtxt(f"../financial_data/AC.csv", delimiter=",", dtype=str)
 ad = ad[1500:]
 
 
@@ -30,9 +30,9 @@ def graphwerk(start, finish):
     c_close = []
     c_volume = []
     c_date = []
-    c_start = start + 24
+    c_start = start + 18
 
-    for x in range(finish - start - 12):
+    for x in range(finish - start - 6):
         c_open.append(float(pd[c_start][1]))
         c_high.append(float(pd[c_start][2]))
         c_low.append(float(pd[c_start][3]))
@@ -139,5 +139,5 @@ sell_dir = "../data/train/sell/"
 iter = 0
 
 for x in range(len(pd)):
-    graphwerk(iter, iter + 24)
-    iter = iter + 2
+    graphwerk(iter, iter + 18)
+    iter = iter + 4
