@@ -7,7 +7,7 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt(f"../BNBUSD-1h-data.csv",
+ad = genfromtxt(f"../BNBUSDT-1h-data.csv",
                 delimiter=",", dtype=str)
 
 
