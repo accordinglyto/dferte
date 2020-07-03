@@ -7,7 +7,8 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt(f"../financial_data/AC.csv", delimiter=",", dtype=str)
+ad = genfromtxt(f"../financial_data/XBTUSD-1h-data.csv",
+                delimiter=",", dtype=str)
 
 
 def convolve_sma(array, period):
@@ -71,7 +72,8 @@ def graphwerk(start, finish):
     for x in range(len(close) - len(smb)):
         smb.append(smb[-1] + diff)
 
-    fig = plt.figure(num=1, figsize=(3, 3), dpi=50, facecolor="w", edgecolor="k")
+    fig = plt.figure(num=1, figsize=(3, 3), dpi=50,
+                     facecolor="w", edgecolor="k")
     dx = fig.add_subplot(111)
     # mpl_finance.volume_overlay(ax, open, close, volume, width=0.4, colorup='b', colordown='b', alpha=1)
     mpl_finance.candlestick2_ochl(

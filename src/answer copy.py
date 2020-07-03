@@ -94,7 +94,7 @@ for stock in output:
 
     from psequant import get_pse_data
 
-    df = get_pse_data(stock, "2020-05-28", "2020-06-23")
+    df = get_pse_data(stock, "2020-05-29", "2020-06-24")
     df.to_csv("file_name.csv")
 
     # read the data file in as a list
