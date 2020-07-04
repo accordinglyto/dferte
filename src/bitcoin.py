@@ -7,7 +7,7 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt(f"../BNBUSDT-1h-data.csv",
+ad = genfromtxt(f"../BTCUSDT-1h-data.csv",
                 delimiter=",", dtype=str)
 
 
@@ -59,7 +59,7 @@ def graphwerk(start, finish):
     min_forecast = min(c_low)
     max_forecast = max(c_high)
 
-    if close[-1] * 1.01 < max_forecast:
+    if close[-1] * 1.03 < max_forecast:
         decision = "buy"
     # for z in all_prices:
     # if close[-1] * 1.03 < z:
