@@ -7,7 +7,7 @@ import matplotlib
 
 # Input your csv file here with historical data
 
-ad = genfromtxt(f"../BTCUSDT-1h-data.csv",
+ad = genfromtxt(f"../XBTUSD-1h-data.csv",
                 delimiter=",", dtype=str)
 
 
@@ -33,11 +33,11 @@ def graphwerk(start, finish):
     c_start = start + 12
 
     for x in range(finish - start):
-        c_open.append(float(pd[c_start][1]))
-        c_high.append(float(pd[c_start][2]))
-        c_low.append(float(pd[c_start][3]))
-        c_close.append(float(pd[c_start][4]))
-        c_volume.append(float(pd[c_start][5]))
+        c_open.append(float(pd[c_start][2]))
+        c_high.append(float(pd[c_start][3]))
+        c_low.append(float(pd[c_start][4]))
+        c_close.append(float(pd[c_start][5]))
+        c_volume.append(float(pd[c_start][7]))
         c_date.append(pd[c_start][0])
         c_start = c_start + 1
 
@@ -45,11 +45,11 @@ def graphwerk(start, finish):
 
         # Below filtering is valid for eurusd.csv file. Other financial data files have different orders so you need to find out
         # what means open, high and close in their respective order.
-        open.append(float(pd[start][1]))
-        high.append(float(pd[start][2]))
-        low.append(float(pd[start][3]))
-        close.append(float(pd[start][4]))
-        volume.append(float(pd[start][5]))
+        open.append(float(pd[start][2]))
+        high.append(float(pd[start][3]))
+        low.append(float(pd[start][4]))
+        close.append(float(pd[start][5]))
+        volume.append(float(pd[start][7]))
         # decision.append(str(pd[start][6]))
         date.append(pd[start][0])
 
@@ -59,7 +59,7 @@ def graphwerk(start, finish):
     min_forecast = min(c_low)
     max_forecast = max(c_high)
 
-    if close[-1] * 1.03 < max_forecast:
+    if close[-1] * 1.01 < max_forecast:
         decision = "buy"
     # for z in all_prices:
     # if close[-1] * 1.03 < z:

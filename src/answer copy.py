@@ -25,11 +25,11 @@ def graphwerk(start, finish, stock):
 
         # Below filtering is valid for eurusd.csv file. Other financial data files have different orders so you need to find out
         # what means open, high and close in their respective order.
-        open.append(float(pd[start][1]))
-        high.append(float(pd[start][2]))
-        low.append(float(pd[start][3]))
-        close.append(float(pd[start][4]))
-        volume.append(str(pd[start][5]))
+        open.append(float(pd[start][2]))
+        high.append(float(pd[start][3]))
+        low.append(float(pd[start][4]))
+        close.append(float(pd[start][5]))
+        volume.append(str(pd[start][7]))
         date.append(pd[start][0])
 
         start = start + 1
@@ -41,7 +41,8 @@ def graphwerk(start, finish, stock):
     for x in range(len(close) - len(smb)):
         smb.append(smb[-1] + diff)
 
-    fig = plt.figure(num=1, figsize=(3, 3), dpi=50, facecolor="w", edgecolor="k")
+    fig = plt.figure(num=1, figsize=(3, 3), dpi=50,
+                     facecolor="w", edgecolor="k")
     dx = fig.add_subplot(111)
     # mpl_finance.volume_overlay(ax, open, close, volume, width=0.4, colorup='b', colordown='b', alpha=1)
     mpl_finance.candlestick2_ochl(
@@ -86,33 +87,12 @@ def graphwerk(start, finish, stock):
     plt.clf()
 
 
-output = []
-with open("STOCKbluechip.csv") as f:
-    output = [str(s) for line in f.readlines() for s in line[:-1].split(",")]
+output = ["BTC"]
 
 for stock in output:
 
-    from psequant import get_pse_data
-
-    df = get_pse_data(stock, "2020-05-29", "2020-06-24")
-    df.to_csv("file_name.csv")
-
-    # read the data file in as a list
-    fin = open("file_name.csv", "r")
-    data_list = fin.readlines()
-    fin.close()
-    # test it ...
-
-    # remove list items from index 3 to 5 (inclusive)
-    del data_list[0]
-    # test it ...
-
-    # write the changed data (list) to a file
-    fout = open("file_name.csv", "w")
-    fout.writelines(data_list)
-    fout.close()
-
-    ad = genfromtxt("../src/file_name.csv", delimiter=",", dtype=str)
+    ad = genfromtxt("../../Crypto/XBTUSD-1h-data.csv",
+                    delimiter=",", dtype=str)
     pd = ad
 
     buy_dir = "../data/train/"
@@ -123,7 +103,7 @@ for stock in output:
     iter = 0
 
     for x in range(1):
-        graphwerk(iter, iter + 18, stock)
+        graphwerk(iter, iter + 12, stock)
         iter = iter + 2
 
 # ad = genfromtxt("../src/file_name.csv", delimiter=",", dtype=str)
